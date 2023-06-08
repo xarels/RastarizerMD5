@@ -1,0 +1,18 @@
+﻿  AmbientLight.cpp
+  Bitmap.cpp
+  Camera.cpp
+  DirectionalLight.cpp
+  Framework.cpp
+  light.cpp
+  Matrix.cpp
+  MD2Loader.cpp
+  Model.cpp
+  PointLight.cpp
+  Polygon3D.cpp
+  Rasteriser.cpp
+  Vector3D.cpp
+  Vertex.cpp
+  Generating code
+  All 560 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Rasteriser.vcxproj -> C:\Users\Pawel\Desktop\Graphics submission\Source\x64\Release\Rasteriser.exe

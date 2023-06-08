@@ -1,0 +1,21 @@
+﻿  AmbientLight.cpp
+  Bitmap.cpp
+  Camera.cpp
+  DirectionalLight.cpp
+  Framework.cpp
+  light.cpp
+  Matrix.cpp
+  MD2Loader.cpp
+  Model.cpp
+Model.cpp(60): warning C4018: '<': signed/unsigned mismatch
+Model.cpp(68): warning C4018: '<': signed/unsigned mismatch
+Model.cpp(76): warning C4018: '<': signed/unsigned mismatch
+  PointLight.cpp
+  Polygon3D.cpp
+  Rasteriser.cpp
+  Vector3D.cpp
+  Vertex.cpp
+  Generating code
+  All 560 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Rasteriser.vcxproj -> C:\Users\Pawel\Desktop\Graphics submission\Source\Release\Rasteriser.exe
