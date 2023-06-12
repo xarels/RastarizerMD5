@@ -13,10 +13,11 @@ bool Rasteriser::Initialise()
 	camera = Camera(0, 0, 0, Vertex(0.0f, 0.0f, -50.0f, 1.0f));
 	//ambient Light
 	ambLight = AmbientLight(28, 80, 120);
+	//ambLight = AmbientLight(200, 240, 250);
 	//Directional Light
-	dirLight.emplace_back(DirectionalLight(0, 200, 0, Vector3D(1.0f, 0.0f, 1.0f)));   // default value 1,0,1 <-- change if needed
+	dirLight.emplace_back(DirectionalLight(0, 100, 0, Vector3D(1.0f, 0.0f, 1.0f)));   // default value 1,0,1 <-- change if needed
 	//Point Light
-	pointLight.emplace_back(PointLight(1, 0, 1, Vertex(0.0f, 0.0f, -0.50f, 1.0f), 0, 1, 0));
+	//pointLight.emplace_back(PointLight(28, 80, 120, Vertex(0.0f, -20.0f, -5.50f, 1.0f), 2.00f, 0.00f, 2.00f));
 
 	ticks = 0;
 	return true;
@@ -34,9 +35,12 @@ void Rasteriser::Render(Bitmap &bitmap)
 {
 	// Clear the window to black
 	bitmap.Clear(RGB(0, 0, 0));
+
 	//Run Preview
 	//CyclePreview(bitmap);
 	SmoothShadingCycle(bitmap);
+	//ThreeLightsCycle(bitmap);
+	//BarycentricCycle(bitmap);
 }
 
 void Rasteriser::DrawWireFrameNoCulling(Bitmap &bitmap)
@@ -190,16 +194,22 @@ void Rasteriser::MyDrawSolidFlat(Bitmap &bitmap)
 
 void Rasteriser::DrawSmoothShading(Bitmap &bitmap)
 {
-	COLORREF Color = RGB(28, 211, 162);
+	//COLORREF Color = RGB(28, 211, 162);
 	HDC hdc = bitmap.GetDC();
+
+	//Write on screen
+	//LPCWSTR message = L"My Solid Flat";
+	//DrawString(bitmap, message);
+
 	int tempIndex[3]{ 0, 0, 0 };
 
 	int polygonSize = (int)model.GetPolygonCount();
+
 	for (int i = 0; i < polygonSize; i++)			// For each polygon draw point
 	{
 		if (model.GetPolygons()[i].GetToBeCulled() == false)
 		{
-			Color = RGB(model.GetPolygons()[i].GetRColor(), model.GetPolygons()[i].GetGColor(), model.GetPolygons()[i].GetBColor());
+			//Color = RGB(model.GetPolygons()[i].GetRColor(), model.GetPolygons()[i].GetGColor(), model.GetPolygons()[i].GetBColor());
 
 			tempIndex[0] = model.GetPolygons()[i].GetIndex(0);
 			tempIndex[1] = model.GetPolygons()[i].GetIndex(1);
@@ -482,6 +492,7 @@ void Rasteriser::PointCycle(Bitmap& bitmap)
 	model.ApplyTransformToTransformedVertices(screenTransformation);
 	DrawSolidFlat(bitmap);
 }
+
 void Rasteriser::AmbientDirectionalCycle(Bitmap& bitmap)
 {
 	// World Transformation
@@ -538,6 +549,8 @@ void Rasteriser::BarycentricCycle(Bitmap& bitmap)
 	model.CalculateAmbientLight(ambLight);
 	//directioncal light
 	model.CalculateDirectionalLight(dirLight);
+	//PointLight
+	model.CalculatePointLight(pointLight);
 	//Sort
 	model.Sort();
 	// Camera transformation
@@ -554,21 +567,42 @@ void Rasteriser::SmoothShadingCycle(Bitmap& bitmap)
 {
 	// World Transformation
 	model.ApplyTransformToLocalVertices(modelTransformation);
+
 	//backface culling
 	model.CalculateBackfaces(camera.GetPosition());
+
 	// Normals for vertices
 	model.CalculateNormalForVertices();
+
 	//Ambient Light
+	//model.CalculateAmbientLight(ambLight);
 	model.CheckAmbientLightVertex(ambLight);
+
+	//Directional Light
+	model.CalculateDirectionalLightShading(dirLight);
+	model.CheckDirectionalLightVertex(dirLight);
+
+
+	//Point Light
+	//model.CalculatePointLight(pointLight);
+	model.CheckPointLightVertex(pointLight);
+
 	//Sort
 	model.Sort();
+
 	// Camera transformation
 	model.ApplyTransformToTransformedVertices(camera.GetView());
 	model.ApplyTransformToTransformedVertices(perspectiveTransformation);
+
 	// Dehomogenize the transformed vertices
 	model.DehomogenizeAll();
+
 	// Apply the screen transformation to the transformed vertices in the model
 	model.ApplyTransformToTransformedVertices(screenTransformation);
+
+	//DrawSolidFlat(bitmap);
+	//MyDrawSolidFlat(bitmap);
+
 	DrawSmoothShading(bitmap);
 }
 

@@ -43,7 +43,8 @@ public:
 	void MyDrawSolidFlat(Bitmap &bitmap);
 	void DrawSmoothShading(Bitmap & bitmap);
 	void FillPolygonFlatBarycentricShading(Bitmap & bitmap, Vertex vt1, Vertex vt2, Vertex vt3);
-	void Rasteriser::FillPolygonFlatBarycentric(Bitmap &bitmap, Vertex vt1, Vertex vt2, Vertex vt3, COLORREF shading);
+	void FillPolygonFlatBarycentric(Bitmap &bitmap, Vertex vt1, Vertex vt2, Vertex vt3, COLORREF shading);
+	//void FillPolygonFlatGaroudShading(Bitmap& bitmap, Vertex vt1, Vertex vt2, Vertex vt3, Vertex vt4, Vertex vt5);
 
 	//Generate matrices
 	void GeneratePerspectiveMatrix(float d, float aspectRatio);

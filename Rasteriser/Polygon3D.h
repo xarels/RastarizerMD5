@@ -45,6 +45,8 @@ public:
 	void CheckAmbientLight(AmbientLight ambientLight, float ka_ambientReflectanceCoeficient[3]);
 	void CheckDirectionalLight(std::vector<DirectionalLight> dirLight, float diffuseReflectanceCoeficient[3]);
 	void CheckPointLight(std::vector<PointLight> pointLight, float diffuseReflectanceCoeficient[3], std::vector<Vertex> _transformVertices);
+	void CheckDirectionalLightShading(std::vector<DirectionalLight> dirLight, float kd_diffuseReflectanceCoeficient[3]);
+	void CheckPointLightShading(std::vector<PointLight> pointLight, float kd_diffuseReflectanceCoeficient[3], std::vector<Vertex> _transformVertices);
 
 private:
 	int _indices[3];

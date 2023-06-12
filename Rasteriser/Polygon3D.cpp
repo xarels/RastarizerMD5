@@ -167,8 +167,8 @@ void Polygon3D::CheckAmbientLight(AmbientLight ambientLight, float ka_ambientRef
 			tempRGB[i] *= ka_ambientReflectanceCoeficient[i];
 
 			// clamps R,G,B values || Ternary for If statement
-			tempRGB[i] = tempRGB[i] < 0 ? 0 : tempRGB[i];
-			tempRGB[i] = tempRGB[i] > 255 ? 255 : tempRGB[i];
+			tempRGB[i] = tempRGB[i] < minRGB ? minRGB : tempRGB[i];
+			tempRGB[i] = tempRGB[i] > maxRGB ? maxRGB : tempRGB[i];
 		}
 
 		//Stores colours in polygon
@@ -181,13 +181,13 @@ void Polygon3D::CheckDirectionalLight(std::vector<DirectionalLight> dirLight, fl
 {
 	Vector3D polygonNormal;
 	Vector3D directionalLightSource;
+	total[0] = 0;
+	total[1] = 0;
+	total[2] = 0;
+
 	int dirLightSize = (int)dirLight.size();
 	for (int j = 0; j < dirLightSize; j++)
 	{
-		total[0] = 0;
-		total[1] = 0;
-		total[2] = 0;
-
 		// gets light intensity
 		tempRGB[0] = dirLight[j].GetRColor();
 		tempRGB[1] = dirLight[j].GetGColor();
@@ -241,13 +241,13 @@ void Polygon3D::CheckPointLight(std::vector<PointLight> pointLight, float kd_dif
 	Vector3D polygonNormal;
 	Vector3D lightSource;
 
+	total[0] = 0;
+	total[1] = 0;
+	total[2] = 0;
+
 	int pointLightSize = (int)pointLight.size();
 	for (int j = 0; j < pointLightSize; j++)
 	{
-		total[0] = 0;
-		total[1] = 0;
-		total[2] = 0;
-
 		// gets light intensity stored in pointLight
 		tempRGB[0] = pointLight[j].GetRColor();
 		tempRGB[1] = pointLight[j].GetGColor();
@@ -278,14 +278,14 @@ void Polygon3D::CheckPointLight(std::vector<PointLight> pointLight, float kd_dif
 		//Calculates dot product between normal polygon and direction of light
 		dotProduct = Vector3D::DotProduct(lightSource, polygonNormal);
 
-		if (dotProduct > 0.0f)
+		if (dotProduct > 0)
 		{
 			//Calculates Attenuation
 			attenuation = (float)1 / pointLight[j].GetAttenA() +
-				pointLight[j].GetAttenB() *
-				pointLight[j].GetAttenDistance() +
-				pointLight[j].GetAttenC() *
-				(pointLight[j].GetAttenDistance() * pointLight[j].GetAttenDistance());
+					(pointLight[j].GetAttenB() *
+					pointLight[j].GetAttenDistance()) +
+					pointLight[j].GetAttenC() *
+					(float)pow(pointLight[j].GetAttenDistance(), 2);
 
 			for (int i = 0; i < 3; i++)
 			{
@@ -299,6 +299,63 @@ void Polygon3D::CheckPointLight(std::vector<PointLight> pointLight, float kd_dif
 				total[i] += tempRGB[i];
 
 				// clamps R,G,B values || ternary for if statement
+				total[i] = total[i] < minRGB ? minRGB : total[i];
+				total[i] = total[i] > maxRGB ? maxRGB : total[i];
+			}
+			//Stores colours in polygon
+			_r = total[0];
+			_g = total[1];
+			_b = total[2];
+		}
+	}
+}
+
+void Polygon3D::CheckDirectionalLightShading(std::vector<DirectionalLight> dirLight, float kd_diffuseReflectanceCoeficient[3])
+{
+	Vector3D polygonNormal;
+	Vector3D directionalLightSource;
+	total[0] = 0;
+	total[1] = 0;
+	total[2] = 0;
+
+	int dirLightSize = (int)dirLight.size();
+	for (int j = 0; j < dirLightSize; j++)
+	{
+		// gets light intensity
+		tempRGB[0] = dirLight[j].GetRColor();
+		tempRGB[1] = dirLight[j].GetGColor();
+		tempRGB[2] = dirLight[j].GetBColor();
+
+		//Multiplies temp by light coeficiency
+		tempRGB[0] *= kd_diffuseReflectanceCoeficient[0];
+		tempRGB[1] *= kd_diffuseReflectanceCoeficient[1];
+		tempRGB[2] *= kd_diffuseReflectanceCoeficient[2];
+
+		//Gets light intensity stored in polygons
+		total[0] = _r;
+		total[1] = _g;
+		total[2] = _b;
+
+		// Gets normal vector
+		polygonNormal = GetNormalVector();
+
+		directionalLightSource = dirLight[j].GetDirection();
+		directionalLightSource.NormaliseVector3D();
+
+		//Calculates dot product between normal polygon and direction of light
+		dotProduct = Vector3D::DotProduct(directionalLightSource, polygonNormal);
+
+		if (dotProduct > 0.0f)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				//Multiplies temporary variable by dot product
+				tempRGB[i] *= dotProduct;
+
+				//Add temporary variable to total
+				total[i] += tempRGB[i];
+
+				// clamps R,G,B values || Lambda expression for if statement
 				total[i] = total[i] < minRGB ? minRGB : total[i];
 				total[i] = total[i] > maxRGB ? maxRGB : total[i];
 			}

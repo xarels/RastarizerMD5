@@ -12,7 +12,7 @@ PointLight::PointLight() : Light ()
 	_atten_c = 0;
 }
 
-PointLight::PointLight(int r, int g, int b, Vertex lightSource, int atten_a, int atten_b, int atten_c) : Light(r,g,b)
+PointLight::PointLight(int r, int g, int b, Vertex lightSource, float atten_a, float atten_b, float atten_c) : Light(r,g,b)
 {
 	_r = (float) r;
 	_g = (float) g;

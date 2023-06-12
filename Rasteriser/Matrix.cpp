@@ -2,7 +2,7 @@
 
 Matrix::Matrix()
 {
-	_m[rows][columns];
+	//_m[rows][columns];
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
@@ -19,7 +19,7 @@ Matrix::Matrix(std::initializer_list<float> list)
 		throw "Insufficient values supplied";
 	}
 
-	_m[rows][columns];
+	//_m[rows][columns];
 	auto iterator = list.begin();
 	for (int i = 0; i < rows; i++)
 	{
@@ -32,7 +32,7 @@ Matrix::Matrix(std::initializer_list<float> list)
 
 Matrix::Matrix(const Matrix& other)
 {
-	_m [rows][columns];
+	//_m[rows][columns];
 	Copy(other);
 }
 

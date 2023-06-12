@@ -8,7 +8,7 @@ class PointLight : public Light
 {
 public:
 	PointLight();
-	PointLight(int r, int g, int b, Vertex lightSource, int atten_a, int atten_b, int atten_c);
+	PointLight(int r, int g, int b, Vertex lightSource, float atten_a, float atten_b, float atten_c);
 	~PointLight();
 	PointLight(const PointLight &v);
 

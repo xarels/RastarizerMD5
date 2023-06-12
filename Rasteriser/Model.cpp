@@ -119,6 +119,16 @@ void Model::CalculatePointLight(std::vector<PointLight> pointLight)
 	}
 }
 
+void Model::CalculateDirectionalLightShading(std::vector<DirectionalLight> dirLight)
+{
+	int polygonSize = (int)GetPolygonCount();
+
+	for (int i = 0; i < polygonSize; i++)
+	{
+		_polygons[i].CheckDirectionalLightShading(dirLight, kd_diffuseReflectanceCoeficient);
+	}
+}
+
 bool CompareSort(Polygon3D &a, Polygon3D &b)
 {
 	return a.GetAverageZDepth() > b.GetAverageZDepth();
@@ -194,11 +204,10 @@ void Model::CheckAmbientLightVertex(AmbientLight amb)
 			tempRGB[i] = tempRGB[i] < minRGB ? minRGB : tempRGB[i];
 			tempRGB[i] = tempRGB[i] > maxRGB ? maxRGB : tempRGB[i];
 
-
 			//Stores colours in polygon
-			_transformVertices[_polygons[j].GetIndex(i)].SetRColor(tempRGB[0]);
+			_transformVertices[_polygons[j].GetIndex(i)].SetGColor(tempRGB[0]);
 			_transformVertices[_polygons[j].GetIndex(i)].SetGColor(tempRGB[1]);
-			_transformVertices[_polygons[j].GetIndex(i)].SetBColor(tempRGB[2]);
+			_transformVertices[_polygons[j].GetIndex(i)].SetGColor(tempRGB[2]);
 		}
 	}
 }
@@ -324,8 +333,8 @@ void Model::CheckPointLightVertex(std::vector<PointLight> pointLight)
 			{
 				//Calculates Attenuation
 				attenuation = (float)1 / pointLight[j].GetAttenA() +
-					pointLight[j].GetAttenB() *
-					pointLight[j].GetAttenDistance() +
+					(pointLight[j].GetAttenB() *
+					pointLight[j].GetAttenDistance()) +
 					pointLight[j].GetAttenC() *
 					(float)pow(pointLight[j].GetAttenDistance(), 2);
 

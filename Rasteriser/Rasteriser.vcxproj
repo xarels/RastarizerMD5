@@ -142,6 +142,7 @@
     <ClInclude Include="AmbientLight.h" />
     <ClInclude Include="Bitmap.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Light.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="AmbientLight.cpp" />
     <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="light.cpp" />

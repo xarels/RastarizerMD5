@@ -1,36 +1,30 @@
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\vc141.pdb
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\vc141.idb
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\ambientlight.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\bitmap.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\camera.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\directionallight.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\framework.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\light.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\matrix.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\md2loader.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\model.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\pointlight.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\polygon3d.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\vector3d.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\vertex.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.obj
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\x64\debug\rasteriser.exe
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\x64\debug\rasteriser.ilk
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\x64\debug\rasteriser.pdb
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.res
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\directionallight.obj.enc
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\md2loader.obj.enc
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\model.obj.enc
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\polygon3d.obj.enc
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.obj.enc
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\vector3d.obj.enc
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\vertex.obj.enc
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.tlog\cl.command.1.tlog
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.tlog\cl.read.1.tlog
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.tlog\cl.write.1.tlog
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.tlog\link.command.1.tlog
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.tlog\link.read.1.tlog
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.tlog\link.write.1.tlog
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.tlog\rc.command.1.tlog
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.tlog\rc.read.1.tlog
-c:\users\100415320\desktop\working lights latest\baseframework_2 3d for testing !! 2\rasteriser\x64\debug\rasteriser.tlog\rc.write.1.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\vc143.pdb
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\vc143.idb
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\vertex.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\vector3d.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\polygon3d.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\pointlight.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\model.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\md2loader.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\matrix.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\light.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\framework.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\directionallight.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\camera.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\bitmap.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\ambientlight.obj
+c:\users\xarels\desktop\git hub projects\rastarizermd5\x64\debug\rasteriser.exe
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.ilk
+c:\users\xarels\desktop\git hub projects\rastarizermd5\x64\debug\rasteriser.pdb
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.res
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\cl.command.1.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\cl.items.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\cl.read.1.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\cl.write.1.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\link.command.1.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\link.read.1.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\link.write.1.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\rc.command.1.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\rc.read.1.tlog
+c:\users\xarels\desktop\git hub projects\rastarizermd5\rasteriser\x64\debug\rasteriser.tlog\rc.write.1.tlog
