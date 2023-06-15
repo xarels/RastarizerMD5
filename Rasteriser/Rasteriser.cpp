@@ -5,19 +5,27 @@ int ticks;
 
 bool Rasteriser::Initialise()
 {
-	if (!MD2Loader::LoadModel("kenny.md2", model, &Model::AddPolygon, &Model::AddVertex))
+	if (!MD2Loader::LoadModel("cube.md2", model, &Model::AddPolygon, &Model::AddVertex))
 	{
 		return false;
 	}
 	// Camera
-	camera = Camera(0, 0, 0, Vertex(0.0f, 0.0f, -50.0f, 1.0f));
+	//camera = Camera(0, 0, 0, Vertex(0.0f, 0.0f, -40.0f, 1.0f));
+	//camera = Camera(0, 0, 0, Vertex(0.0f, 0.0f, -50.0f, 1.0f));
+	camera = Camera(0, 0, 0, Vertex(0.0f, 0.0f, -150.0f, 1.0f));
+
 	//ambient Light
 	ambLight = AmbientLight(28, 80, 120);
-	//ambLight = AmbientLight(200, 240, 250);
-	//Directional Light
-	dirLight.emplace_back(DirectionalLight(0, 100, 0, Vector3D(1.0f, 0.0f, 1.0f)));   // default value 1,0,1 <-- change if needed
+	//ambLight = AmbientLight(0, 0, 0);
+	
+	//Directional 
+	//dirLight.emplace_back(DirectionalLight(0, 100, 0, Vector3D(1.0f, 0.0f, 1.0f)));   // default value 1,0,1 <-- change if needed
+	dirLight.emplace_back(DirectionalLight(255, 221, 108, Vector3D(-2.0f, 1.0f, 2.0f)));   // default value 1,0,1 <-- change if needed
+
+
 	//Point Light
 	//pointLight.emplace_back(PointLight(28, 80, 120, Vertex(0.0f, -20.0f, -5.50f, 1.0f), 2.00f, 0.00f, 2.00f));
+	pointLight.emplace_back(PointLight(10, 0, 0, Vertex(50.0f, -50.0f, 1.0f, -100.0f), 1.00f, 0.00f, 1.00f));
 
 	ticks = 0;
 	return true;
@@ -38,10 +46,13 @@ void Rasteriser::Render(Bitmap &bitmap)
 
 	//Run Preview
 	//CyclePreview(bitmap);
-	SmoothShadingCycle(bitmap);
-	//ThreeLightsCycle(bitmap);
+	//WireframeCycleNoCulling(bitmap);
+	//WireframeCycleCullingSort(bitmap);
+	//SmoothShadingCycle(bitmap);
+    ThreeLightsCycle(bitmap);
 	//BarycentricCycle(bitmap);
-}
+	//DirectionalCycle(bitmap);
+}	
 
 void Rasteriser::DrawWireFrameNoCulling(Bitmap &bitmap)
 {
@@ -194,12 +205,7 @@ void Rasteriser::MyDrawSolidFlat(Bitmap &bitmap)
 
 void Rasteriser::DrawSmoothShading(Bitmap &bitmap)
 {
-	//COLORREF Color = RGB(28, 211, 162);
 	HDC hdc = bitmap.GetDC();
-
-	//Write on screen
-	//LPCWSTR message = L"My Solid Flat";
-	//DrawString(bitmap, message);
 
 	int tempIndex[3]{ 0, 0, 0 };
 
@@ -209,8 +215,6 @@ void Rasteriser::DrawSmoothShading(Bitmap &bitmap)
 	{
 		if (model.GetPolygons()[i].GetToBeCulled() == false)
 		{
-			//Color = RGB(model.GetPolygons()[i].GetRColor(), model.GetPolygons()[i].GetGColor(), model.GetPolygons()[i].GetBColor());
-
 			tempIndex[0] = model.GetPolygons()[i].GetIndex(0);
 			tempIndex[1] = model.GetPolygons()[i].GetIndex(1);
 			tempIndex[2] = model.GetPolygons()[i].GetIndex(2);
@@ -419,9 +423,9 @@ void Rasteriser::DrawSolidCycle(Bitmap& bitmap)
 {
 	// World Transformation
 	model.ApplyTransformToLocalVertices(modelTransformation);
-	//backface culling
+	// backface culling
 	model.CalculateBackfaces(camera.GetPosition());
-	//Sort
+	// Sort
 	model.Sort();
 	// Camera transformation
 	model.ApplyTransformToTransformedVertices(camera.GetView());
@@ -579,7 +583,7 @@ void Rasteriser::SmoothShadingCycle(Bitmap& bitmap)
 	model.CheckAmbientLightVertex(ambLight);
 
 	//Directional Light
-	model.CalculateDirectionalLightShading(dirLight);
+	//model.CalculateDirectionalLightShading(dirLight);
 	model.CheckDirectionalLightVertex(dirLight);
 
 
@@ -593,10 +597,8 @@ void Rasteriser::SmoothShadingCycle(Bitmap& bitmap)
 	// Camera transformation
 	model.ApplyTransformToTransformedVertices(camera.GetView());
 	model.ApplyTransformToTransformedVertices(perspectiveTransformation);
-
 	// Dehomogenize the transformed vertices
 	model.DehomogenizeAll();
-
 	// Apply the screen transformation to the transformed vertices in the model
 	model.ApplyTransformToTransformedVertices(screenTransformation);
 

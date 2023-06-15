@@ -50,7 +50,7 @@ public:
 
 private:
 	int _indices[3];
-	bool _cullMarking;
+	bool _cullMarking = NULL;
 	Vector3D _normal;
 	float _averageZDepth;
 	float _r;

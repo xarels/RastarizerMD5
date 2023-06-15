@@ -1,5 +1,4 @@
-﻿  MD2Loader.cpp
-  Model.cpp
+﻿  Polygon3D.cpp
   Rasteriser.cpp
   Generating Code...
   Rasteriser.vcxproj -> C:\Users\Xarels\Desktop\Git Hub Projects\RastarizerMD5\x64\Debug\Rasteriser.exe

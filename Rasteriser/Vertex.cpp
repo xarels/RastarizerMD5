@@ -6,7 +6,7 @@ Vertex::Vertex()
 	_x = 0.0f;
 	_y = 0.0f;
 	_z = 0.0f;
-	_w = 0.0f;
+	_w = 1.0f;
 	_normal = Vector3D(0, 0, 0);
 	_r = 0.0f;
 	_g = 0.0f;

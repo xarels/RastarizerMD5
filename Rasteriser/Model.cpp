@@ -118,7 +118,7 @@ void Model::CalculatePointLight(std::vector<PointLight> pointLight)
 		_polygons[i].CheckPointLight(pointLight, kd_diffuseReflectanceCoeficient, _transformVertices);
 	}
 }
-
+/*
 void Model::CalculateDirectionalLightShading(std::vector<DirectionalLight> dirLight)
 {
 	int polygonSize = (int)GetPolygonCount();
@@ -127,7 +127,7 @@ void Model::CalculateDirectionalLightShading(std::vector<DirectionalLight> dirLi
 	{
 		_polygons[i].CheckDirectionalLightShading(dirLight, kd_diffuseReflectanceCoeficient);
 	}
-}
+}*/
 
 bool CompareSort(Polygon3D &a, Polygon3D &b)
 {
@@ -205,9 +205,9 @@ void Model::CheckAmbientLightVertex(AmbientLight amb)
 			tempRGB[i] = tempRGB[i] > maxRGB ? maxRGB : tempRGB[i];
 
 			//Stores colours in polygon
-			_transformVertices[_polygons[j].GetIndex(i)].SetGColor(tempRGB[0]);
+			_transformVertices[_polygons[j].GetIndex(i)].SetRColor(tempRGB[0]);
 			_transformVertices[_polygons[j].GetIndex(i)].SetGColor(tempRGB[1]);
-			_transformVertices[_polygons[j].GetIndex(i)].SetGColor(tempRGB[2]);
+			_transformVertices[_polygons[j].GetIndex(i)].SetBColor(tempRGB[2]);
 		}
 	}
 }
@@ -240,9 +240,9 @@ void Model::CheckDirectionalLightVertex(std::vector<DirectionalLight> dirLight)
 				tempRGB[2] = dirLight[j].GetBColor();
 
 				//Gets light intensity stored in polygons
-				total[0] = GetVertices()[GetPolygons()[i].GetIndex(c)].GetRColor();
-				total[1] = GetVertices()[GetPolygons()[i].GetIndex(c)].GetGColor();
-				total[2] = GetVertices()[GetPolygons()[i].GetIndex(c)].GetBColor();
+				total[0] = _transformVertices[_polygons[i].GetIndex(c)].GetRColor();
+				total[1] = _transformVertices[_polygons[i].GetIndex(c)].GetGColor();
+				total[2] = _transformVertices[_polygons[i].GetIndex(c)].GetBColor();
 
 				//Multiplies temp by light coeficiency
 				tempRGB[c] *= kd_diffuseReflectanceCoeficient[c];
@@ -269,9 +269,9 @@ void Model::CheckDirectionalLightVertex(std::vector<DirectionalLight> dirLight)
 					total[c] = total[c] > maxRGB ? maxRGB : total[c];
 
 					//Stores colours in polygon
-					GetVertices()[GetPolygons()[i].GetIndex(c)].SetRColor(total[0]);
-					GetVertices()[GetPolygons()[i].GetIndex(c)].SetGColor(total[1]);
-					GetVertices()[GetPolygons()[i].GetIndex(c)].SetBColor(total[2]);
+					_transformVertices[_polygons[i].GetIndex(c)].SetRColor(total[0]);
+					_transformVertices[_polygons[i].GetIndex(c)].SetGColor(total[1]);
+					_transformVertices[_polygons[i].GetIndex(c)].SetBColor(total[2]);
 				}
 			}
 		}

@@ -12,6 +12,7 @@ Polygon3D::Polygon3D()
 	_indices[0] = 0;
 	_indices[1] = 0;
 	_indices[2] = 0;
+	_cullMarking = NULL;
 	_averageZDepth = 0;
 	_r = 0.0f;
 	_g = 0.0f;
@@ -156,25 +157,25 @@ void Polygon3D::DecideCulling(std::vector<Vertex> _transformVertices,Vertex Cam_
 
 void Polygon3D::CheckAmbientLight(AmbientLight ambientLight, float ka_ambientReflectanceCoeficient[3])
 {
-		// get light intensity stored in ambient light
-		tempRGB[0] = ambientLight.GetRColor();
-		tempRGB[1] = ambientLight.GetGColor();
-		tempRGB[2] = ambientLight.GetBColor();
+	// get light intensity stored in ambient light
+	tempRGB[0] = ambientLight.GetRColor();
+	tempRGB[1] = ambientLight.GetGColor();
+	tempRGB[2] = ambientLight.GetBColor();
 
-		for (int i = 0; i < 3; i++)
-		{
-			//Multiplies temp by diffuse refflectance
-			tempRGB[i] *= ka_ambientReflectanceCoeficient[i];
+	for (int i = 0; i < 3; i++)
+	{
+		//Multiplies temp by diffuse refflectance
+		tempRGB[i] *= ka_ambientReflectanceCoeficient[i];
 
-			// clamps R,G,B values || Ternary for If statement
-			tempRGB[i] = tempRGB[i] < minRGB ? minRGB : tempRGB[i];
-			tempRGB[i] = tempRGB[i] > maxRGB ? maxRGB : tempRGB[i];
-		}
+		// clamps R,G,B values || Ternary for If statement
+		tempRGB[i] = tempRGB[i] < minRGB ? minRGB : tempRGB[i];
+		tempRGB[i] = tempRGB[i] > maxRGB ? maxRGB : tempRGB[i];
+	}
 
-		//Stores colours in polygon
-		_r = tempRGB[0];
-		_g = tempRGB[1];
-		_b = tempRGB[2];
+	//Stores colours in polygon
+	_r = tempRGB[0];
+	_g = tempRGB[1];
+	_b = tempRGB[2];
 }
 
 void Polygon3D::CheckDirectionalLight(std::vector<DirectionalLight> dirLight, float kd_diffuseReflectanceCoeficient[3])
@@ -282,10 +283,10 @@ void Polygon3D::CheckPointLight(std::vector<PointLight> pointLight, float kd_dif
 		{
 			//Calculates Attenuation
 			attenuation = (float)1 / pointLight[j].GetAttenA() +
-					(pointLight[j].GetAttenB() *
+				(pointLight[j].GetAttenB() *
 					pointLight[j].GetAttenDistance()) +
-					pointLight[j].GetAttenC() *
-					(float)pow(pointLight[j].GetAttenDistance(), 2);
+				pointLight[j].GetAttenC() *
+				(float)pow(pointLight[j].GetAttenDistance(), 2);
 
 			for (int i = 0; i < 3; i++)
 			{
@@ -309,7 +310,7 @@ void Polygon3D::CheckPointLight(std::vector<PointLight> pointLight, float kd_dif
 		}
 	}
 }
-
+/*
 void Polygon3D::CheckDirectionalLightShading(std::vector<DirectionalLight> dirLight, float kd_diffuseReflectanceCoeficient[3])
 {
 	Vector3D polygonNormal;
@@ -365,4 +366,4 @@ void Polygon3D::CheckDirectionalLightShading(std::vector<DirectionalLight> dirLi
 			_b = total[2];
 		}
 	}
-}
+}*/

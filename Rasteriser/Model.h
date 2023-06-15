@@ -61,6 +61,8 @@ public:
 	//Calculate Point Light
 	void CalculatePointLight(std::vector<PointLight> pointLight);
 
+	void CalculateAmbientLightShading(std::vector<DirectionalLight> dirLight);
+
 	void CalculateDirectionalLightShading(std::vector<DirectionalLight> dirLight);
 
 	//Sort
